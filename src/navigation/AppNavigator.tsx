@@ -13,6 +13,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import FormScreen from '../screens/FormScreen';
 import LocationPickerScreen from '../screens/LocationPickerScreen';
 import ReportDetailsScreen from '../screens/ReportDetailsScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -64,6 +65,11 @@ const AppNavigator = () => {
         name="ReportDetails" 
         component={ReportDetailsScreen} 
         options={{ headerShown: false }} // Usamos un header personalizado en la pantalla
+      />
+      <Stack.Screen 
+        name="About" 
+        component={AboutScreen} 
+        options={{ title: 'Información de la App', headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.white }} 
       />
     </Stack.Navigator>
   );

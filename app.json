@@ -20,11 +20,25 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.iandigitals.ReporteCiudadano"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "owner": "iandigitals",
+    "extra": {
+      "eas": {
+        "projectId": "5e452cd5-6aa2-4023-9ab9-ce0fbd3f8de4"
+      }
     }
   }
 }

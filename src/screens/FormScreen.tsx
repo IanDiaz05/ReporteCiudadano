@@ -42,7 +42,6 @@ const FormScreen: React.FC<Props> = ({ navigation, route }) => {
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // CAMBIO: useEffect para cargar y guardar el estado del formulario con AsyncStorage
   useEffect(() => {
     // Cargar datos guardados al montar la pantalla
     const loadFormData = async () => {
@@ -94,7 +93,7 @@ const FormScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, [route.params?.selectedLocation, location]);
   
-  // CAMBIO: Función para obtener la ubicación actual
+  // obtener la ubicación actual
   const handleUseCurrentLocation = async () => {
     setLoading(true);
     try {
@@ -114,16 +113,30 @@ const FormScreen: React.FC<Props> = ({ navigation, route }) => {
   };
 
   const clearForm = useCallback(async () => {
-    setTitle('');
-    setDescription('');
-    setCategory('Bache');
-    setUrgent(false);
-    setImage(null);
-    // CAMBIO: Limpiar también el AsyncStorage
     try {
-        await AsyncStorage.multiRemove(['form_title', 'form_description', 'form_category', 'form_urgent', 'form_image']);
-    } catch(e) {
-        console.error("Failed to clear form data.", e);
+      // 1. Limpiar el estado del componente inmediatamente para una respuesta rápida en la UI
+      setTitle('');
+      setDescription('');
+      setCategory('Bache');
+      setUrgent(false);
+      setImage(null);
+
+      // 2. Limpiar el AsyncStorage de forma asíncrona
+      await AsyncStorage.multiRemove(['form_title', 'form_description', 'form_category', 'form_urgent', 'form_image']);
+      
+      // 3. Notificar al usuario que la operación fue exitosa
+      Alert.alert(
+        "Formulario Limpiado",
+        "El formulario ha sido limpiado exitosamente."
+      );
+
+    } catch (e) {
+      console.error("Failed to clear form data from AsyncStorage.", e);
+      // 4. Notificar al usuario si hubo un error (aunque es poco probable)
+      Alert.alert(
+        "Error",
+        "No se pudo limpiar el formulario."
+      );
     }
   }, []);
 

@@ -11,6 +11,7 @@ export type RootStackParamList = {
   Form: { report?: Report };
   LocationPicker: { location?: { latitude: number; longitude: number } };
   ReportDetails: { report: Report };
+  About: undefined;
 };
 
 // Define los parámetros para cada pantalla en el Tab Navigator
